@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Final Question</title>
+  <style>
+    body {
+      background: #ffc0cb;
+      font-family: Arial;
+      text-align: center;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    h1, p {
+      z-index: 2;
+    }
+
+    button {
+      padding: 15px 25px;
+      font-size: 18px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      z-index: 2;
+      background: #ff4d6d;
+      color: white;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 24px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); }
+      to { transform: translateY(-110vh); }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Final Question 💘</h1>
+<p>Are you ready for something special?</p>
+
+<button onclick="next()">YES 💕</button>
+
+<script>
+  function next() {
+    window.location.href = "valentines.html";
+  }
+
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.animationDuration = (3 + Math.random() * 4) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+  }
+
+  setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine?</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: pink;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+h1 {
+    margin-bottom: 30px;
+    z-index: 2;
+}
+
+/* YES */
+#yes {
+    padding: 14px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 14px;
+    background: #ff4d6d;
+    color: white;
+    cursor: pointer;
+    z-index: 2;
+}
+
+/* NO */
+#no {
+    padding: 14px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 14px;
+    background: #444;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    transition: 0.25s ease;
+    z-index: 2;
+}
+
+/* floating hearts */
+.heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 22px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(0); }
+    to { transform: translateY(-110vh); }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Can you be my Valentine? 💖</h1>
+
+<button id="yes" onclick="goYes()">YES 💕</button>
+<button id="no">NO 😭</button>
+
+<script>
+const noBtn = document.getElementById("no");
+
+// move NO away playfully
+function moveNo() {
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+}
+
+noBtn.addEventListener("mouseenter", moveNo);
+noBtn.addEventListener("click", moveNo);
+
+function goYes() {
+    heartBurst();
+    setTimeout(() => {
+        window.location.href = "details.html";
+    }, 1200);
+}
+
+/* floating hearts background */
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.animationDuration = (3 + Math.random() * 4) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 300);
+
+/* CONFETTI HEART BURST */
+function heartBurst() {
+    for (let i = 0; i < 30; i++) {
+        const heart = document.createElement("div");
+        heart.innerHTML = "💗";
+        heart.style.position = "fixed";
+        heart.style.left = "50%";
+        heart.style.top = "50%";
+        heart.style.fontSize = "22px";
+        heart.style.pointerEvents = "none";
+
+        const angle = Math.random() * 2 * Math.PI;
+        const distance = 100 + Math.random() * 150;
+
+        const x = Math.cos(angle) * distance;
+        const y = Math.sin(angle) * distance;
+
+        heart.animate([
+            { transform: "translate(0,0)", opacity: 1 },
+            { transform: `translate(${x}px, ${y}px)`, opacity: 0 }
+        ], {
+            duration: 900,
+            easing: "ease-out"
+        });
+
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 900);
+    }
+}
+</script>
+
+
+</body>
+</html>

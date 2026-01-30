@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentine Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffe6ea;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    .card {
+      background: white;
+      width: 300px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    }
+
+    .btn {
+      margin-top: 15px;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 10px;
+      background-color: #ff4d6d;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .btn:disabled {
+      background-color: #ff9aad;
+      cursor: not-allowed;
+    }
+
+    .loading {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #ff4d6d;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Our Valentine Date 💕</h2>
+
+    <p>
+      <strong> HI DALYY,
+i just want to write someting small lang, i know i don't always say things out loud HWAHAHA and you notice that i dont really talk to u that much na lately it's because im working on something. im making a code to surprise you with this kind of invitation, it's my first time tho making and im sorry if hindi ko sinabi. u thought na cold na ako but its just im busy dito cus it takes time talaga WAHAHAHAH. 
+
+thank you for being patient with me, for loving me, abd for being you, excited nako ipakita ni akong gibuhat para saimo WHAHAH 
+
+i love you daly kooooooo
+    <p>
+
+    <p>
+      <strong>👗 What to Wear:</strong> White top, any color bottom (skirts or pants anything u like)<br>
+      YOU'RE ALREADY BEAUTIFUL ENOUGH DALYYY!!!
+    </p>
+
+    <p>
+      <strong>📍 Place:</strong> for now i'll say sa inn, but trust me on this shang youll never regret this mwah   </p>
+
+    <p><strong>⏰ Time:</strong> 12:00pm</p>
+
+    <p>Can’t wait Dalyyy 💖</p>
+
+    <button id="sexyBtn" class="btn" onclick="fakeLoad()">want to see my sexy pic? 😏</button>
+    <div id="loadingText" class="loading">Loading sexy pic... 🔥</div>
+  </div>
+
+  <script>
+    function fakeLoad() {
+      const btn = document.getElementById("sexyBtn");
+      const loading = document.getElementById("loadingText");
+
+      btn.disabled = true;
+      btn.innerText = "Loading...";
+      loading.style.display = "block";
+
+      setTimeout(() => {
+        window.location.href = "lovely.jpg";
+      }, 3000); // 3 seconds fake loading
+    }
+  </script>
+
+</body>
+</html>
