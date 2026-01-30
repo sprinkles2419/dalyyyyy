@@ -28,7 +28,7 @@ h1 {
     gap: 20px; /* space between buttons */
     justify-content: center;
     align-items: center;
-    position: relative; /* for NO button movement */
+    position: relative;
 }
 
 /* YES button */
@@ -52,8 +52,8 @@ h1 {
     background: #444;
     color: white;
     cursor: pointer;
-    position: relative; /* relative for movement */
-    transition: 0.25s ease;
+    position: relative; /* relative keeps it in flex layout */
+    transition: transform 0.25s ease; /* smooth movement */
     z-index: 2;
 }
 
@@ -84,19 +84,18 @@ h1 {
 
 <script>
 const noBtn = document.getElementById("no");
+const container = noBtn.parentElement;
 
-// move NO away playfully
+// Playful NO movement - stays on the same line
 function moveNo() {
-    const parentRect = noBtn.parentElement.getBoundingClientRect();
-    const maxX = parentRect.width - noBtn.offsetWidth;
-    const maxY = window.innerHeight - noBtn.offsetHeight;
+    const containerWidth = container.clientWidth;
+    const btnWidth = noBtn.offsetWidth;
 
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+    // Calculate random X offset but keep NO inside container
+    const maxOffset = containerWidth - btnWidth;
+    const randomX = Math.random() * maxOffset - (containerWidth / 2 - btnWidth / 2);
 
-    noBtn.style.position = "absolute";
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
+    noBtn.style.transform = `translateX(${randomX}px)`;
 }
 
 noBtn.addEventListener("mouseenter", moveNo);
