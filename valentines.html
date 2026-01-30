@@ -8,12 +8,10 @@ body {
     font-family: Arial, sans-serif;
     background: pink;
     text-align: center;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     height: 100vh;
     margin: 0;
     overflow: hidden;
@@ -24,7 +22,16 @@ h1 {
     z-index: 2;
 }
 
-/* YES */
+/* Button container */
+.button-container {
+    display: flex;
+    gap: 20px; /* space between buttons */
+    justify-content: center;
+    align-items: center;
+    position: relative; /* for NO button movement */
+}
+
+/* YES button */
 #yes {
     padding: 14px 30px;
     font-size: 18px;
@@ -36,7 +43,7 @@ h1 {
     z-index: 2;
 }
 
-/* NO */
+/* NO button */
 #no {
     padding: 14px 30px;
     font-size: 18px;
@@ -45,7 +52,7 @@ h1 {
     background: #444;
     color: white;
     cursor: pointer;
-    position: absolute;
+    position: relative; /* relative for movement */
     transition: 0.25s ease;
     z-index: 2;
 }
@@ -70,16 +77,24 @@ h1 {
 
 <h1>Can you be my Valentine? 💖</h1>
 
-<button id="yes" onclick="goYes()">YES 💕</button>
-<button id="no">NO 😭</button>
+<div class="button-container">
+    <button id="yes" onclick="goYes()">YES 💕</button>
+    <button id="no">NO 😭</button>
+</div>
 
 <script>
 const noBtn = document.getElementById("no");
 
 // move NO away playfully
 function moveNo() {
-    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    const parentRect = noBtn.parentElement.getBoundingClientRect();
+    const maxX = parentRect.width - noBtn.offsetWidth;
+    const maxY = window.innerHeight - noBtn.offsetHeight;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    noBtn.style.position = "absolute";
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
 }
@@ -136,7 +151,6 @@ function heartBurst() {
     }
 }
 </script>
-
 
 </body>
 </html>
